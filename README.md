@@ -321,6 +321,6 @@ This is a documentation-only repository. FANAP INFRA and its logo are the proper
 **Pourya**: Embedded Systems Engineer (IoT, industrial, medical, oil & gas)
 Embedded C/C++/Python · RTOS & bare-metal (ARM Cortex-M) · Embedded Linux (Cortex-A) · FPGA (VHDL) · Edge AI / TinyML
 
-- GitHub: [your-username](https://github.com/your-username)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/your-profile)
-- Email: your.email@example.com
+- GitHub: [PATEmbedded](https://github.com/PATEmbedded)
+- LinkedIn: [pourya-afshintabar](https://www.linkedin.com/in/pourya-afshintabar/)
+- Email: pouryaafshintabar@gmail.com
