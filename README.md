@@ -1,61 +1,114 @@
-# FANAP INFRA IIoT Edge Gateway
-
-**A modular industrial IoT edge gateway: ARM Cortex-A8 (TI AM3354), multi-protocol conversion, rich industrial I/O, and cellular / Wi-Fi / ZigBee / GPS connectivity.**
-
-![Platform](https://img.shields.io/badge/SoC-TI%20AM3354%20(Cortex--A8)-blue)
-![OS](https://img.shields.io/badge/OS-Embedded%20Linux%204.14-orange)
-![Domain](https://img.shields.io/badge/Domain-Industrial%20IoT-green)
-![Docs](https://img.shields.io/badge/Type-Hardware%20Datasheet-lightgrey)
+<h1 align="center">Industrial IIoT Edge Gateway</h1>
+<h3 align="center">End-to-end hardware & firmware design: 8-layer PCB, STM32H7 + FreeRTOS, AM335x embedded Linux</h3>
 
 <p align="center">
-  <img src="docs/images/gateway-overview.png" alt="FANAP INFRA IIoT Gateway: product overview" width="720">
+  <img src="https://img.shields.io/badge/Role-Senior%20Firmware%20%26%20Hardware%20Engineer-blue" alt="Role">
+  <img src="https://img.shields.io/badge/PCB-8--layer-orange" alt="PCB">
+  <img src="https://img.shields.io/badge/MCU-STM32H7%20%2B%20FreeRTOS-green" alt="MCU">
+  <img src="https://img.shields.io/badge/SoC-TI%20AM3354%20Cortex--A8-lightgrey" alt="SoC">
+  <img src="https://img.shields.io/badge/Period-2020--2021-informational" alt="Period">
 </p>
+
+<p align="center">
+  <img src="docs/images/gateway-overview.png" alt="Industrial IIoT edge gateway: main card and expansion card" width="720">
+</p>
+
+> I designed this industrial IoT edge gateway end to end, from schematic and 8-layer PCB layout through MCU firmware, embedded Linux optimization, and a protocol/hardware validation framework.
+> It was developed at FANAP Co. (09/2020 – 11/2021) and reached the field as a product.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Key Features](#key-features)
+- [My Role](#my-role)
+- [Project at a Glance](#project-at-a-glance)
+- [Hardware Design](#hardware-design)
+- [Firmware & Software](#firmware--software)
+- [Test & Validation Framework](#test--validation-framework)
 - [System Architecture](#system-architecture)
-- [Hardware Interfaces](#hardware-interfaces)
-  - [Main Card](#main-card)
-  - [Expansion Card](#expansion-card)
+- [Interfaces](#interfaces)
 - [Technical Specifications](#technical-specifications)
-- [Typical Applications](#typical-applications)
+- [Skills Demonstrated](#skills-demonstrated)
 - [Repository Contents](#repository-contents)
-- [About This Project](#about-this-project)
-- [Disclaimer](#disclaimer)
-- [Author](#author)
+- [Note on Confidentiality](#note-on-confidentiality)
+- [Contact](#contact)
 
 ---
 
-## Overview
+## My Role
 
-The **FANAP INFRA Industrial IoT Edge Gateway** acts as a bridge between sensors, I/O devices, PLCs, and the Internet. It collects, processes, and standardizes data from industrial devices before forwarding it to the cloud.
+**Senior Firmware and Hardware Engineer**, responsible for the gateway across the full stack:
 
-It is a highly configurable and manageable gateway that converts between multiple protocols, such as **MQTT, Modbus, S7, ZigBee, CoAP**, and others. This enables real-time control, production and productivity monitoring, and analysis of individual machines and entire plants.
+| Area | What I did |
+|------|------------|
+| **Hardware** | Designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI** |
+| **MCU firmware** | Developed **STM32H7** firmware on **FreeRTOS** |
+| **Embedded Linux** | Optimized code on the **TI AM335x** (Cortex-A8) Linux platform |
+| **Protocols** | Implemented multi-protocol firmware for industrial and IoT communication |
+| **Validation** | Built a **test and debug framework** for HDMI, Ethernet, CAN, RS-485, and USB that validates hardware, boot processes, and peripherals |
 
-The device uses a **two-card plug-in design**:
-
-| Card | Role |
-|------|------|
-| **Main Card** | Compute platform: SoC, memory, storage, networking, wireless, cellular, GPS, power input |
-| **Expansion Card** | Industrial field interfaces: serial buses, CAN, digital I/O, analog I/O |
+<!-- TODO: add a measurable result here, e.g. "Delivered N units to production" / "boot time reduced from X s to Y s" / "passed EMC / isolation tests". Recruiters look for this line. -->
 
 ---
 
-## Key Features
+## Project at a Glance
 
-- High performance and high reliability
-- Flexible interfaces supporting numerous industrial applications
-- Multi-protocol support (MQTT, Modbus, S7, ...) with seamless protocol conversion for machine-to-machine and machine-to-cloud communication
-- Edge computing and real-time performance
-- Energy management
-- Flexible input power (9–48 V DC)
-- Wide operating temperature range (-20 °C to 70 °C)
-- Flexible and cost-effective design, with quick customization for rapid time to market
-- Security features: TPM v1.2, Secure Boot, secure firmware update, I/O port disablement, designed around IEC 62443
+The gateway sits between the plant floor and the cloud. It collects data from sensors, I/O devices, and PLCs, standardizes it, and forwards it upstream. It converts between protocols such as **MQTT, Modbus, S7, ZigBee, and CoAP**.
+
+| | |
+|---|---|
+| **Architecture** | Two plug-in cards: **Main Card** (compute + connectivity) and **Expansion Card** (industrial field I/O) |
+| **Application SoC** | TI AM3354, ARM Cortex-A8, up to 1 GHz, running Linux 4.14 |
+| **Field I/O** | RS-232, RS-485, CAN, 8 DI, 4 DO, 4 AI, 1 AO |
+| **Connectivity** | 2 × Gigabit Ethernet, optional LTE/UMTS/GSM, Wi-Fi, Bluetooth, ZigBee, GPS |
+| **Power** | 9–48 V DC input |
+| **Environment** | -20 °C to 70 °C operating, DIN-rail / wall / VESA / desktop mounting |
+| **Security** | TPM v1.2, Secure Boot, secure firmware update, designed around IEC 62443 |
+
+---
+
+## Hardware Design
+
+- **8-layer PCB** carrying high-speed and mixed-signal sections on one board
+- **Isolated Gigabit Ethernet** (5 kV magnetic isolation per datasheet)
+- **CAN, USB 2.0, and HDMI 1.4A** interfaces
+- Wide-range **9–48 V DC** power input
+- Industrial field interfaces on a separate **Expansion Card**: RS-232/RS-485, CAN, 24 V digital I/O, programmable analog I/O
+
+<!-- Optional: add tools (Altium / KiCad / OrCAD), key ICs, and anything about signal integrity, isolation design, EMC, or bring-up here. -->
+
+<p align="center">
+  <img src="docs/images/front-panel.png" alt="Front panel: Main Card and Expansion Card with labeled interfaces" width="620">
+</p>
+
+---
+
+## Firmware & Software
+
+| Layer | Details |
+|-------|---------|
+| **MCU firmware** | STM32H7, FreeRTOS |
+| **Application processor** | TI AM335x (Cortex-A8), embedded Linux 4.14, optimized code |
+| **Protocols** | MQTT, Modbus (including Modbus RTU gateway), Siemens S7, ZigBee, CoAP, TCP/UDP |
+| **Languages** | C, C++ (platform also supports Perl and Java) |
+
+---
+
+## Test & Validation Framework
+
+I built a dedicated **test and debug framework** to validate the hardware and software together. It covers:
+
+| Interface | Purpose |
+|-----------|---------|
+| HDMI | Display output validation |
+| Ethernet | Link and data-path validation |
+| CAN | Bus communication validation |
+| RS-485 | Serial bus validation |
+| USB | Host interface validation |
+
+It validates the **hardware**, the **boot process**, and the **peripherals**, which shortened the path from a freshly assembled board to a verified one.
+
+<!-- Optional: describe how it works (scripts, loopback fixtures, automated pass/fail report) and which language/tools it uses. -->
 
 ---
 
@@ -69,17 +122,17 @@ flowchart LR
         IO[I/O Devices]
     end
 
-    subgraph GW["FANAP INFRA IIoT Gateway"]
+    subgraph GW["IIoT Gateway"]
         direction TB
         EC["Expansion Card<br/>RS-232 / RS-485 / CAN<br/>DI / DO / AI / AO"]
-        MC["Main Card<br/>AM3354 Cortex-A8<br/>Edge computing + protocol conversion"]
+        MC["Main Card<br/>AM3354 Cortex-A8 + Linux<br/>Protocol conversion + edge computing"]
         EC --> MC
     end
 
     subgraph Up["Network / Cloud"]
         ETH[Gigabit Ethernet]
-        CELL[Cellular LTE / UMTS / GSM]
-        WIFI[Wi-Fi / Bluetooth / ZigBee]
+        CELL[LTE / UMTS / GSM]
+        WL[Wi-Fi / Bluetooth / ZigBee]
         CLOUD[(Cloud / SCADA)]
     end
 
@@ -88,203 +141,110 @@ flowchart LR
     IO --> EC
     MC --> ETH --> CLOUD
     MC --> CELL --> CLOUD
-    MC --> WIFI
+    MC --> WL
 ```
 
 ---
 
-## Hardware Interfaces
+## Interfaces
 
-<p align="center">
-  <img src="docs/images/front-panel.png" alt="Front panel of the Main Card and Expansion Card with labeled interfaces" width="620">
-</p>
+<details>
+<summary><b>Main Card</b></summary>
 
-### Main Card
-
-| Interface | Quantity | Notes |
-|-----------|:--------:|-------|
-| GPS antenna | 1 | SMA female, active and passive antennas supported |
-| ZigBee / Wi-Fi antenna | 1 | SMA female (Wi-Fi shares the antenna with Bluetooth) |
-| Cellular antenna | 1 | SMA female (optional cellular module) |
-| Cellular LED indicators | 3 | Modem status |
-| Micro SIM slots | 2 | Dual Micro SIM connector |
-| Gigabit Ethernet (RJ-45) | 2 | ETH1, ETH2; ETH1 provides PoE++ PSE |
+| Interface | Qty | Notes |
+|-----------|:---:|-------|
+| GPS antenna | 1 | SMA female, active/passive |
+| ZigBee / Wi-Fi antenna | 1 | SMA female (Wi-Fi shared with Bluetooth) |
+| Cellular antenna | 1 | SMA female, optional module |
+| Micro SIM | 2 | Dual SIM |
+| Gigabit Ethernet | 2 | ETH1 provides PoE++ PSE |
 | USB 2.0 host | 1 | High speed |
 | HDMI | 1 | HDMI 1.4A |
-| Power input | 1 | 9–48 V DC; 5.08 mm terminal block and 2.5 mm power jack |
-| Power button | 1 | |
-| Reset button | 1 | |
-| Status / Power LEDs | 1 + 1 | |
+| Power input | 1 | 9–48 V DC, terminal block + power jack |
+| Buttons / LEDs | | Power, reset, status, power, 3 × modem status |
 
-### Expansion Card
+</details>
 
-| Interface | Quantity | Notes |
-|-----------|:--------:|-------|
-| RS-232 | 1 | DB9 (COM) |
-| RS-485 | 1 | Terminal block (L / H) |
-| CAN | 1 | Terminal block (L / H); Classic CAN 2.0 (CAN FD optional) |
-| Digital Input | 8 | 24 V input voltage |
-| Digital Output | 4 | 24 V @ 300 mA |
-| Analog Output | 1 | Current or voltage output (see specs) |
-| Analog Input | 4 | Differential, channel-independent programmable ranges |
+<details>
+<summary><b>Expansion Card</b></summary>
+
+| Interface | Qty | Notes |
+|-----------|:---:|-------|
+| RS-232 | 1 | DB9 |
+| RS-485 | 1 | Terminal block |
+| CAN | 1 | Classic CAN 2.0 (CAN FD optional) |
+| Digital input | 8 | 24 V |
+| Digital output | 4 | 24 V @ 300 mA |
+| Analog input | 4 | Programmable ranges, ±10.24 V to ±2.56 V and unipolar |
+| Analog output | 1 | 4–20 mA / 0–24 mA or up to ±11 V |
 | Status LED | 1 | |
+
+</details>
 
 ---
 
 ## Technical Specifications
 
-### Core System
+<details>
+<summary><b>Core system</b></summary>
 
 | Parameter | Value |
 |-----------|-------|
 | Processor | TI AM3354, ARM Cortex-A8, up to 1 GHz |
-| Operating system | Linux Kernel 4.14, Android Marshmallow |
-| Memory | 512 MB DDR3L (supports up to 1 GB) |
-| Storage | 4 GB eMMC onboard (alternatively 8/16/32/64 GB onboard flash) |
-| Display | HDMI 1.4A |
-| USB | USB host 2.0 high speed |
-| Serial ports | 2 × RS-485/422, 1 × RS-232 |
+| OS | Linux Kernel 4.14, Android Marshmallow |
+| Memory | 512 MB DDR3L (up to 1 GB) |
+| Storage | 4 GB eMMC (8/16/32/64 GB alternatives) |
+| Display / USB | HDMI 1.4A / USB 2.0 host |
+| Serial | 2 × RS-485/422, 1 × RS-232 |
 | CAN | 1 × Classic CAN 2.0, 1 × CAN FD (optional) |
-| RTC / sensors | Onboard RTC, onboard temperature sensor |
-
-### Connectivity
-
-<details open>
-<summary><b>Ethernet &amp; PoE</b></summary>
-
-| Parameter | Value |
-|-----------|-------|
-| Ports | 2 × RJ-45 (Eth1, Eth2) |
-| Speed | 2 × 10/100/1000 Mbps |
-| Magnetic isolation | 5 kV |
-| PoE | 1 port (Eth1), IEEE 802.3bt PoE++ PSE, up to 90 W, with Automatic Maintain Power Signature (MPS) |
+| Misc | Onboard RTC, onboard temperature sensor |
 
 </details>
 
 <details>
-<summary><b>Cellular (optional)</b></summary>
+<summary><b>Wireless & positioning</b></summary>
 
-| Parameter | Value |
-|-----------|-------|
-| GSM | 850 / 900 / 1800 / 1900 MHz |
-| UMTS | B1 / B5 / B8 |
-| LTE FDD | B1 / B3 / B5 / B7 / B8 / B20 |
-| Diversity | LTE/UMTS receive diversity |
-| Antenna connector | SMA, female |
-| SIM | Dual Micro SIM |
-
-</details>
-
-<details>
-<summary><b>Wi-Fi</b></summary>
-
-| Parameter | Value |
-|-----------|-------|
-| Standard | 802.11 a/b/g/n |
-| Frequency band | 2.4 GHz |
-| Security | WEP, WPA, WPA2, WMM, WMM-PS (U-APSD), WMM-SA |
-| Sensitivity | -90 dBm |
-| Data rate | Up to 72.2 Mbps |
-| Antenna connector | SMA, female (combined with Bluetooth antenna) |
+| Block | Key parameters |
+|-------|----------------|
+| Cellular (optional) | GSM 850/900/1800/1900 MHz; UMTS B1/B5/B8; LTE FDD B1/B3/B5/B7/B8/B20; RX diversity; dual Micro SIM |
+| Wi-Fi | 802.11 a/b/g/n, 2.4 GHz, up to 72.2 Mbps, -90 dBm sensitivity |
+| Bluetooth | V4.0, 2.4 GHz, up to 3 Mbps, -86 dBm sensitivity |
+| ZigBee | IEEE 802.15.4, 2.4 GHz, +4.5 / +22 dBm Tx, -98 dBm Rx |
+| GPS | NMEA / UBX / RTCM, 2.5 m accuracy, 5 Hz, cold start 27 s, hot start 1 s |
 
 </details>
 
 <details>
-<summary><b>Bluetooth</b></summary>
+<summary><b>Ethernet, PoE & power</b></summary>
 
 | Parameter | Value |
 |-----------|-------|
-| Standard | Bluetooth V4.0 |
-| Frequency band | 2.4 GHz |
-| Sensitivity | -86 dBm |
-| Data rate | Up to 3 Mbps |
-| Antenna connector | SMA, female (combined with Wi-Fi antenna) |
-
-</details>
-
-<details>
-<summary><b>ZigBee</b></summary>
-
-| Parameter | Value |
-|-----------|-------|
-| Standard | IEEE 802.15.4 |
-| Frequency band | 2.4 GHz |
-| Tx output power | +4.5 dBm (normal power) or +22 dBm (high power) |
-| Rx sensitivity | -98 dBm |
-| Antenna connector | SMA, female |
-
-</details>
-
-<details>
-<summary><b>GPS</b></summary>
-
-| Parameter | Value |
-|-----------|-------|
-| Protocols | NMEA, UBX binary, RTCM |
-| Accuracy | 2.5 m |
-| Update rate | 5 Hz |
-| Acquisition | Cold start 27 s, aided start < 3 s, hot start 1 s |
-| Sensitivity | Tracking -161 dBm, cold start -147 dBm, hot start -156 dBm |
-| Antennas | Active and passive, SMA female |
-
-</details>
-
-### Industrial I/O
-
-| Parameter | Value |
-|-----------|-------|
-| **Analog Input** (4 ch) | Channel-independent programmable ranges. Bipolar: ±10.24 V, ±5.12 V, ±2.56 V. Unipolar: 10.24 V, 5.12 V |
-| **Analog Output** (1 ch), current | 4–20 mA, 0–20 mA, 0–24 mA |
-| **Analog Output** (1 ch), voltage | 0–5 V, 0–10 V, ±5 V, ±10 V; 0–5.5 V, 0–11 V, ±5.5 V, ±11 V (10 % over range) |
-| **Digital Input** (8 ch) | 24 V input voltage |
-| **Digital Output** (4 ch) | 24 V @ 300 mA |
-
-### Power
-
-| Parameter | Value |
-|-----------|-------|
-| Input voltage | 9 to 48 V DC |
+| Ethernet | 2 × 10/100/1000 Mbps, 5 kV magnetic isolation |
+| PoE | Eth1, IEEE 802.3bt PoE++ PSE, up to 90 W, MPS |
+| Input voltage | 9–48 V DC |
 | Input current | 3 A @ 12 V, 1.5 A @ 24 V |
-| Connectors | 5.08 mm terminal block, 2.5 mm power jack |
 
-### Software & Security
+</details>
 
-| Parameter | Value |
-|-----------|-------|
-| Network protocols | TCP, UDP, DHCP, NAT, HTTP, HTTPS, DNS, RIP, OSPF, NTP, SMTP, Telnet, etc. |
-| Serial services | TCP client/server, UDP, Modbus RTU gateway |
-| Industrial protocols | MQTT, Modbus, S7, ZigBee, CoAP, and more |
-| Programming languages | C, C++, Perl, Java |
-| Security | TPM v1.2 (Linux OS), Secure Boot, secure firmware update, I/O port disablement, security based on IEC 62443 |
-
-### Mechanical & Environment
+<details>
+<summary><b>Mechanical & environment</b></summary>
 
 | Parameter | Value |
 |-----------|-------|
 | Operating temperature | -20 °C to 70 °C |
 | Storage temperature | -40 °C to 85 °C |
-| Dimensions (W × D × H) | 115 × 77 × 22 mm |
 | Housing / weight | Metal, 1.6 kg |
-| Mounting | Desktop, VESA, DIN-rail, wall mount |
+| Mounting | Desktop, VESA, DIN-rail, wall |
 
-### Indicators & Controls
+</details>
 
-- 1 × Status LED (Main Card)
-- 1 × Status LED (Expansion Card)
-- 3 × Modem status LEDs
-- 1 × Link LED and 1 × Speed LED per Ethernet port
-- 1 × Reset button, 1 × Power button
+The full datasheet is in [`datasheet.pdf`](datasheet.pdf).
 
 ---
 
-## Typical Applications
+## Skills Demonstrated
 
-- Protocol conversion between field devices and cloud platforms (e.g. Modbus / S7 to MQTT)
-- Real-time machine control and monitoring
-- Production and productivity analysis for individual machines or entire plants
-- Edge data pre-processing before cloud upload
-- Remote sites with cellular backhaul and GPS positioning
-- Energy monitoring and management
+`Schematic & PCB design (8-layer)` · `Isolated Ethernet / CAN / USB / HDMI` · `STM32H7` · `FreeRTOS` · `Embedded Linux (AM335x)` · `Bare-metal & RTOS C/C++` · `Industrial protocols (Modbus, S7, MQTT, CoAP, ZigBee)` · `Hardware bring-up & validation` · `Test automation / debug tooling` · `Secure boot & IEC 62443-oriented design`
 
 ---
 
@@ -293,7 +253,7 @@ flowchart LR
 ```text
 .
 ├── README.md
-├── datasheet.pdf               # Full product datasheet
+├── datasheet.pdf                  # Product datasheet I prepared
 └── docs/
     └── images/
         ├── gateway-overview.png   # Product overview
@@ -302,23 +262,17 @@ flowchart LR
 
 ---
 
-## About This Project
+## Note on Confidentiality
 
-This repository presents the **FANAP INFRA IIoT Edge Gateway** and its technical documentation. I prepared the product datasheet while working at **FANAP**.
-
-<!-- Optionally describe your exact contribution here, e.g. hardware bring-up, firmware, protocol stack, documentation. -->
+This repository is a **portfolio description** of my work and contains documentation only. Schematics, layout files, and source code are proprietary to the employer and are **not** included. Product names and logos belong to their respective owners. Product page: <https://fanap-infra.com/en>.
 
 ---
 
-## Disclaimer
+## Contact
 
-This is a documentation-only repository. FANAP INFRA and its logo are the property of their respective owner. Specifications are taken from the product datasheet and may change without notice. Refer to the official website, <https://fanap-infra.com>, for current information.
+**Pourya**, Embedded Systems Engineer · Vienna, Austria
+IoT · industrial · medical · oil & gas · 9+ years
 
----
-
-## Author
-
-**Pourya**: Embedded Systems Engineer (IoT, industrial, medical, oil & gas)
 Embedded C/C++/Python · RTOS & bare-metal (ARM Cortex-M) · Embedded Linux (Cortex-A) · FPGA (VHDL) · Edge AI / TinyML
 
 - GitHub: [PATEmbedded](https://github.com/PATEmbedded)
