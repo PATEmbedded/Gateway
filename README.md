@@ -223,7 +223,7 @@ flowchart LR
 | Parameter | Value |
 |-----------|-------|
 | Ethernet | 2 × 10/100/1000 Mbps, 5 kV magnetic isolation |
-| PoE | Eth1, IEEE 802.3bt PoE++ PSE, up to 90 W, MPS |
+| PoE | Eth1, IEEE 802.3bt PoE++ PSE, MPS |
 | Input voltage | 9–48 V DC |
 | Input current | 3 A @ 12 V, 1.5 A @ 24 V |
 
