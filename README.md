@@ -14,6 +14,7 @@
 </p>
 
 > I designed this industrial IoT edge gateway end to end, from schematic and 8-layer PCB layout through MCU firmware, embedded Linux optimization, and a protocol/hardware validation framework.
+> The hardware was designed with **IEC 61000** (EMC), **IEC 60068** (environmental) and **IEC 60079** (ATEX) requirements in mind; see [Design standards](#hardware-design).
 > It was developed at FANAP Co. (09/2020 – 11/2021) and reached the field as a product.
 
 ---
@@ -41,7 +42,7 @@
 
 | Area | What I did |
 |------|------------|
-| **Hardware** | Designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI** |
+| **Hardware** | Designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI**, with **IEC 61000 / IEC 60068 / IEC 60079** requirements in mind |
 | **MCU firmware** | Developed **STM32H7** firmware on **FreeRTOS** |
 | **Embedded Linux** | Optimized code on the **TI AM335x** (Cortex-A8) Linux platform |
 | **Protocols** | Implemented multi-protocol firmware for industrial and IoT communication |
@@ -74,6 +75,8 @@ The gateway sits between the plant floor and the cloud. It collects data from se
 - **CAN, USB 2.0, and HDMI 1.4A** interfaces
 - Wide-range **9–48 V DC** power input
 - Industrial field interfaces on a separate **Expansion Card**: RS-232/RS-485, CAN, 24 V digital I/O, programmable analog I/O
+
+**Design standards.** The design took these standards into account: **IEC 61000-4** (ESD, EFT, surge, RF immunity, voltage dips), **IEC 61000-6-2/-6-4** and **CISPR 32** (EMC), **IEC 60068-2** (temperature, humidity, vibration, shock), **IEC 60079** (ATEX), **IEC 62368-1** (safety), **IEC 60529** (IP) and **IEC 62443-4-2** (cybersecurity). They served as design guidelines; no formal certification is claimed.
 
 <!-- Optional: add tools (Altium / KiCad / OrCAD), key ICs, and anything about signal integrity, isolation design, EMC, or bring-up here. -->
 
@@ -244,7 +247,7 @@ The full datasheet is in [`datasheet.pdf`](datasheet.pdf).
 
 ## Skills Demonstrated
 
-`Schematic & PCB design (8-layer)` · `Isolated Ethernet / CAN / USB / HDMI` · `STM32H7` · `FreeRTOS` · `Embedded Linux (AM335x)` · `Bare-metal & RTOS C/C++` · `Industrial protocols (Modbus, S7, MQTT, CoAP, ZigBee)` · `Hardware bring-up & validation` · `Test automation / debug tooling` · `Secure boot & IEC 62443-oriented design`
+`Schematic & PCB design (8-layer)` · `EMC & environmental design (IEC 61000, IEC 60068)` · `ATEX-aware design (IEC 60079)` · `Isolated Ethernet / CAN / USB / HDMI` · `STM32H7` · `FreeRTOS` · `Embedded Linux (AM335x)` · `Bare-metal & RTOS C/C++` · `Industrial protocols (Modbus, S7, MQTT, CoAP, ZigBee)` · `Hardware bring-up & validation` · `Test automation / debug tooling` · `Secure boot & IEC 62443-oriented design`
 
 ---
 
