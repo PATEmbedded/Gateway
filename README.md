@@ -38,11 +38,11 @@
 
 ## My Role
 
-**Senior Firmware and Hardware Engineer**, responsible for the gateway across the full stack:
+**Senior Firmware and Hardware Engineer** and **hardware team lead**, responsible for the gateway across the full stack:
 
 | Area | What I did |
 |------|------------|
-| **Hardware** | Designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI**, with **IEC 61000 / IEC 60068 / IEC 60079** requirements in mind |
+| **Hardware** | Led the hardware team and designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI**, with **IEC 61000 / IEC 60068 / IEC 60079** requirements in mind |
 | **MCU firmware** | Developed **STM32H7** firmware on **FreeRTOS** |
 | **Embedded Linux** | Optimized code on the **TI AM335x** (Cortex-A8) Linux platform |
 | **Protocols** | Implemented multi-protocol firmware for industrial and IoT communication |
@@ -274,7 +274,7 @@ This repository is a **portfolio description** of my work and contains documenta
 ## Contact
 
 **Pourya**, Embedded Systems Engineer · Vienna, Austria
-IoT · industrial · medical · oil & gas · 9+ years
+IoT · industrial · medical · oil & gas · 10+ years
 
 Embedded C/C++/Python · RTOS & bare-metal (ARM Cortex-M) · Embedded Linux (Cortex-A) · FPGA (VHDL) · Edge AI / TinyML
 
