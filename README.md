@@ -274,7 +274,7 @@ This repository is a **portfolio description** of my work and contains documenta
 ## Contact
 
 **Pourya**, Embedded Systems Engineer · Vienna, Austria
-IoT · industrial · medical · oil & gas · 10+ years
+Extensive experience building industrial, oil & gas, medical and IoT products
 
 Embedded C/C++/Python · RTOS & bare-metal (ARM Cortex-M) · Embedded Linux (Cortex-A) · FPGA (VHDL) · Edge AI / TinyML
 
