@@ -1,4 +1,4 @@
-<h1 align="center">Industrial IIoT Edge Gateway</h1>
+<h1 align="center">Industrial IoT Edge Gateway</h1>
 <h3 align="center">End-to-end hardware & firmware design: 8-layer PCB, STM32H7 + FreeRTOS, AM335x embedded Linux</h3>
 
 <p align="center">
@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/gateway-overview.png" alt="Industrial IIoT edge gateway: main card and expansion card" width="720">
+  <img src="docs/images/gateway-overview.png" alt="Industrial IoT edge gateway: main card and expansion card" width="720">
 </p>
 
-> I designed this industrial IoT edge gateway end to end, from schematic and 8-layer PCB layout through MCU firmware, embedded Linux optimization, and a protocol/hardware validation framework.
-> The hardware was designed with **IEC 61000** (EMC), **IEC 60068** (environmental) and **IEC 60079** (ATEX) requirements in mind; see [Design standards](#hardware-design).
+> I designed this industrial IoT edge gateway end to end, from schematic and 8-layer PCB layout through MCU firmware, embedded Linux optimization, and a bring-up and validation framework for 10+ interfaces.
+> The hardware was designed following **IEC 61000** (EMC), **IEC 60068** (environmental), **IEC 62443** (cybersecurity) and **ATEX** (IEC 60079) guidelines; see [Design standards](#hardware-design).
 > It was developed at FANAP Co. (09/2020 – 11/2021) and reached the field as a product.
 
 ---
@@ -42,11 +42,11 @@
 
 | Area | What I did |
 |------|------------|
-| **Hardware** | Led the hardware team and designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI**, with **IEC 61000 / IEC 60068 / IEC 60079** requirements in mind |
+| **Hardware** | Led the hardware team and designed the gateway's electronics end to end, including an **8-layer PCB** with **isolated Gigabit Ethernet**, **CAN**, **USB**, and **HDMI**, following **IEC 61000 / IEC 60068 / IEC 62443 / ATEX** guidelines |
 | **MCU firmware** | Developed **STM32H7** firmware on **FreeRTOS** |
 | **Embedded Linux** | Optimized code on the **TI AM335x** (Cortex-A8) Linux platform |
 | **Protocols** | Implemented multi-protocol firmware for industrial and IoT communication |
-| **Validation** | Built a **test and debug framework** for HDMI, Ethernet, CAN, RS-485, and USB that validates hardware, boot processes, and peripherals |
+| **Validation** | Built a **bring-up, test and debug framework** for 10+ interfaces, including HDMI, Ethernet, CAN, RS-485, and USB, that validates hardware, boot processes, and peripherals |
 
 <!-- TODO: add a measurable result here, e.g. "Delivered N units to production" / "boot time reduced from X s to Y s" / "passed EMC / isolation tests". Recruiters look for this line. -->
 
@@ -99,7 +99,7 @@ The gateway sits between the plant floor and the cloud. It collects data from se
 
 ## Test & Validation Framework
 
-I built a dedicated **test and debug framework** to validate the hardware and software together. It covers:
+I built a dedicated **bring-up, test and debug framework** to validate the hardware and software together. It covers 10+ interfaces; the main ones are:
 
 | Interface | Purpose |
 |-----------|---------|
