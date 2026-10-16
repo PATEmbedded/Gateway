@@ -280,4 +280,4 @@ Embedded C/C++/Python · RTOS & bare-metal (ARM Cortex-M) · Embedded Linux (Cor
 
 - GitHub: [PATEmbedded](https://github.com/PATEmbedded)
 - LinkedIn: [pourya-afshintabar](https://www.linkedin.com/in/pourya-afshintabar/)
-- Email: pouryaafshintabar@gmail.com
+- Email: pat.embedded@gmail.com
