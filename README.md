@@ -64,7 +64,7 @@ The gateway sits between the plant floor and the cloud. It collects data from se
 | **Connectivity** | 2 × Gigabit Ethernet, optional LTE/UMTS/GSM, Wi-Fi, Bluetooth, ZigBee, GPS |
 | **Power** | 9–48 V DC input |
 | **Environment** | -20 °C to 70 °C operating, DIN-rail / wall / VESA / desktop mounting |
-| **Security** | TPM v1.2, Secure Boot, secure firmware update, designed around IEC 62443 |
+| **Security** | Product features (datasheet): TPM v1.2, Secure Boot, secure firmware update. Hardware designed following IEC 62443 guidelines |
 
 ---
 
@@ -247,7 +247,7 @@ The full datasheet is in [`datasheet.pdf`](datasheet.pdf).
 
 ## Skills Demonstrated
 
-`Schematic & PCB design (8-layer)` · `EMC & environmental design (IEC 61000, IEC 60068)` · `ATEX-aware design (IEC 60079)` · `Isolated Ethernet / CAN / USB / HDMI` · `STM32H7` · `FreeRTOS` · `Embedded Linux (AM335x)` · `Bare-metal & RTOS C/C++` · `Industrial protocols (Modbus, S7, MQTT, CoAP, ZigBee)` · `Hardware bring-up & validation` · `Test automation / debug tooling` · `Secure boot & IEC 62443-oriented design`
+`Schematic & PCB design (8-layer)` · `EMC & environmental design (IEC 61000, IEC 60068)` · `ATEX-aware design (IEC 60079)` · `Isolated Ethernet / CAN / USB / HDMI` · `STM32H7` · `FreeRTOS` · `Embedded Linux (AM335x)` · `Bare-metal & RTOS C/C++` · `Industrial protocols (Modbus, S7, MQTT, CoAP, ZigBee)` · `Hardware bring-up & validation` · `Test automation / debug tooling` · `IEC 62443-oriented design`
 
 ---
 
